@@ -9,6 +9,10 @@ class ProductsController < ApplicationController
     else
       Product.all
     end
+
+    if request.xhr?
+      render partial: "shared/product", collection: @products
+    end
   end
 
   # GET /products/1
