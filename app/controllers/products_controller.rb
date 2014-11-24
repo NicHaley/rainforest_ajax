@@ -10,8 +10,9 @@ class ProductsController < ApplicationController
       Product.all
     end
 
-    if request.xhr?
-      render partial: "shared/product", collection: @products
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
