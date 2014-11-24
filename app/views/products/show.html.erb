@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="panel panel-default main-panel">
+  <div class="panel-body">
+    <h2><%= @product.name %></h2>
+    <p>
+      <%= link_to image_tag(@product.url, :height => "250") %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @product.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @product.description %>
+    </p>
+
+    <p>
+      <strong>Price: </strong>
+      $<%= @product.formatted_price %>
+    </p>
+
+    <%= link_to 'Edit', edit_product_path(@product) %> |
+    <%= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+
+    <% if current_user %>
+
+    <!-- Add a new review -->
+    <h3>New Review</h3>
+    <!-- Create a review for the assocaited product -->
+    <!-- We need to pass in an array because @reviews lives nested within @product -->
+    <%= form_for([@product, @review]) do |f| %>		
+    <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment, :size => "45x5" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+
+    <% else %>
+    <p>Please <%= link_to "log in", new_session_path %> to add a review.</p> 
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default side-panel">
+  <div class="panel-body">
+
+    <!-- Existing reviews -->
+    <h3>Reviews</h3>
+
+    <% @product.reviews.each do |review| %>
+    <p>
+      <% if review.id != nil %>
+      <strong><%= review.comment %></strong><br>
+      <% if review.user != nil %>
+      <em> - by - <%= review.user.name %></em>  Added on: <%= review.created_at %>
+      <% end %>
+      <% end %>
+    </p>
+    <% end %><br>
+  </div>
+</div>
+
+
+
+
+
+
+
+

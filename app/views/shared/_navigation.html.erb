@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">
+				<div id="title">Rainforest</div>
+				<img id="logo" src="http://static.squarespace.com/static/51782a3be4b0be6d32e91928/t/5179773be4b0f0be01bf5952/1366914876747/Plants-Trees-Leaf-icon.png" />
+			</a>
+		</div>
+		<span class="userinfo">
+			<% if current_user %>
+			Signed in as <%= current_user.name %> | <%= link_to "Log out", session_path("current"), :method => :delete %>
+			<% else %>
+			<% if controller_name == "sessions" %>
+			<%= link_to "Sign up", new_user_path %>
+			<% elsif controller_name == "users" %>
+			<%= link_to "Log in", new_session_path %>
+			<% else %>
+			<%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+			<% end %>
+			<% end %>
+		</span> 
+	</div>
+</nav>

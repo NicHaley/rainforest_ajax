@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rainforest2</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<link href='http://fonts.googleapis.com/css?family=Patrick+Hand|Playfair+Display|Shadows+Into+Light|Just+Me+Again+Down+Here|Merienda+One|Pacifico|Slabo+13px|Amatic+SC|Lobster+Two|Patua+One|Quattrocento|Sacramento' rel='stylesheet' type='text/css'>
+	<%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+	<%= render 'shared/navigation' %>
+	<div id="main-container" class="container">
+	
+		<% if flash[:notice] %>
+		<p id="notice"><%= flash[:notice] %></p>
+		<% end %>
+		<% if flash[:alert] %>
+		<p id="alert"><%= flash[:alert] %></p>
+		<% end %>
+
+		<%= yield %>
+
+	</div> 
+</body>
+</html>

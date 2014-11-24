@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+
+		<h2>Log In</h2><br>
+
+		<%= form_tag sessions_path, class: "form-horizontal" do %>
+		<div class="field form-group">
+			<%= label_tag :email %><br/>
+			<%= text_field_tag :email, params[:email] %>
+		</div>
+		<div class="field form-group">
+			<%= label_tag :password %><br/>
+			<%= password_field_tag :password %>
+		</div>
+		<div class="actions form-group"><%= submit_tag "Log in" %></div>
+		<% end %>
+	</div>
+</div>
+
