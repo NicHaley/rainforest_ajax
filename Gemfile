@@ -41,6 +41,8 @@ gem 'autoprefixer-rails'
 
 gem 'ransack'	# This is for search bars and sortable links
 
+gem 'kaminari'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
